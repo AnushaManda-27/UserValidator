@@ -1,98 +1,136 @@
-package userreg;
+
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
 
-
-class UserValidatorTest {
+class UserValidator1Test {
 
     @Test
-    void Proper_FirstName_true() {
-        UserValidator validator = new UserValidator();
+    void validateFirstName() {
+        UserValidator1 validator = new UserValidator1();
         boolean result = validator.validateFirstName("Anusha");
-        assertEquals(true, result);
+        Assertions.assertTrue(result);
     }
 
     @Test
-    void Proper_firstname_false() {
-        UserValidator validator = new UserValidator();
-        boolean result = validator.validateFirstName("An");
-        assertEquals(true, result);
+    public void givenFirstName_WhenShort_ShouldReturnFalse() {
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validateFirstName("an");
+        Assertions.assertTrue(result);
+
+    }
+    @Test
+    public void givenFirstName_WhenShort_ShouldReturnFalse1() {
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validateFirstName("@Anusha");
+        Assertions.assertTrue(result);
+    }
+    @Test
+    public void givenLastName_WhenProper_ShouldReturnfalse() {
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validateLastName("27anu");
+        Assertions.assertFalse(result);
     }
 
     @Test
-    void prper_firstname_false1() {
-        UserValidator validator = new UserValidator();
-        boolean result = validator.validateFirstName("Anu@sha");
-        assertEquals(true, result);
+    public void givenLastName_WhenProper_ShouldReturnfalse12() {
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validateLastName("manda55");
+        Assertions.assertFalse(result);
     }
 
-    @Test
-    public void givenLastName_WhenProper_ShouldReturnTrue() {
-        UserValidator validator = new UserValidator();
-        boolean result = validator.validateLastName("Manda");
-        assertEquals(true, result);
-    }
 
     @Test
-    public void givenLastName_WhenProper_ShouldReturntrue() {
-        UserValidator validator = new UserValidator();
-        boolean result = validator.validateLastName("123@Manda");
-        assertEquals(true, result);
-    }
-
-    @Test
-    public void givenLastName_WhenProper_ShouldReturnfalse1() {
-        UserValidator validator = new UserValidator();
-        boolean result = validator.validateLastName("Manda@1254");
-        assertEquals(false, result);
+    public void givenEmail_WhenEmailValid_ShouldReturnTrue() {
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validateEmailAddress("abc.xyz@bridgelabz.co.in");
+        Assertions.assertTrue(result);
     }
 
     @Test
     public void givenEmail_WhenProper_ShouldReturnTrue() {
-        UserValidator validator = new UserValidator();
-        boolean result = validator.validateEMAIL_ADDRESS_PATTERN("abc.xyz@bridgelabz.co.in");
-        assertEquals(true, result);
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validateEmailAddress("abc@bridgelabz.co.in");
+        Assertions.assertTrue(result);
     }
-    @Test
-    public void givenEmail_WhenProper_ShouldReturnTrue1() {
-        UserValidator validator = new UserValidator();
-        boolean result = validator.validateEMAIL_ADDRESS_PATTERN("abc@bridgelabz.co.in");
-        assertEquals(true, result);
-    }
+
     @Test
     public void givenEmail_WhenProper_ShouldReturnfalse() {
-        UserValidator validator = new UserValidator();
-        boolean result = validator.validateEMAIL_ADDRESS_PATTERN("abc.@.co.in");
-        assertEquals(false, result);
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validateEmailAddress("abc.xyz@.co.in");
+        Assertions.assertFalse(result);
     }
+
+    @Test
+    public void givenEmail_WhenProper_ShouldReturnTrue1() {
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validateEmailAddress("abc.12@.com");
+        Assertions.assertTrue(result);
+    }
+
+
+    @Test
+    public void givenEmail_WhenProper_ShouldReturnfalse12() {
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validateEmailAddress("abc.xyz@.co.net");
+        Assertions.assertFalse(result);
+    }
+
 
     @Test
     public void givenMobile_WhenProper_ShouldReturnTrue() {
-        UserValidator validator = new UserValidator();
-        boolean result = validator.validateMOBILE_NUMBER_PATTERN("9876543210");
-        assertEquals(true, result);
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validateMobileNumber("98765432");
+        Assertions.assertTrue(result);
     }
 
     @Test
-    public void givenMobile_WhenProper_ShouldReturnTrue1() {
-        UserValidator validator = new UserValidator();
-        boolean result = validator.validateMOBILE_NUMBER_PATTERN("9589312404");
-        assertEquals(true, result);
+    public void givenMobile_WhenProper_ShouldReturnTrue12() {
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validateMobileNumber("9951259086");
+        Assertions.assertTrue(result);
     }
 
     @Test
-    void givenMobile_WhenProper_ShouldReturnfalse() {
-        UserValidator validator = new UserValidator();
-        boolean result = validator.validateMOBILE_NUMBER_PATTERN("35804");
-        assertFalse(result);
+    public void givenMobile_WhenProper_ShouldReturnfalse() {
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validateMobileNumber("4786858");
+        Assertions.assertFalse(result);
     }
 
     @Test
-    void givenMobile_WhenProper_ShouldReturnfalse1() {
-        UserValidator validator = new UserValidator();
-        boolean result = validator.validateMOBILE_NUMBER_PATTERN("358000454666592404");
-        assertEquals(false, result);
+    public void givenMobile_WhenProper_ShouldReturnfalse12() {
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validateMobileNumber("5285054546592404");
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    public void givenPassword_WhenProper_ShouldReturnTrue() {
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validatePassword("A@gmail.com");
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void givenPassword_WhennotProper_ShouldReturnfalse() {
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validatePassword("Anushamanda");
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void givenPassword_WhennotProper_ShouldReturnfalse1() {
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validatePassword("Highway");
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void givenPassword_WhennotProper_ShouldReturnfalse12() {
+        UserValidator1 validator = new UserValidator1();
+        boolean result = validator.validatePassword("Redandblue32@");
+        Assertions.assertTrue(result);
     }
 }
